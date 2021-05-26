@@ -2,63 +2,22 @@ package squarefootgardenplotgenerator;
 
 public class SquareMaker {
 
-    String emptyLine1 = "+-----*-----*-----*-----*-----*-----*-----*-----*-----*-----*-----*-----+";
-    String emptyLine2 = "|                                                                       |";
-    String emptyLine3 = "*                                                                       *";
-    String emptyLine4 = "|                                                                       |";
-    String emptyLine5 = "*                                                                       *";
-    String emptyLine6 = "|                                                                       |";
-    String emptyLine7 = "*                                                                       *";
-    String emptyLine8 = "|                                                                       |";
-    String emptyLine9 = "*                                                                       *";
-    String emptyLine10 = "|                                                                       |";
-    String emptyLine11 = "*                                                                       *";
-    String emptyLine12 = "|                                                                       |";
-    String emptyLine13 = "*                                                                       *";
-    String emptyLine14 = "|                                                                       |";
-    String emptyLine15 = "*                                                                       *";
-    String emptyLine16 = "|                                                                       |";
-    String emptyLine17 = "*                                                                       *";
-    String emptyLine18 = "|                                                                       |";
-    String emptyLine19 = "*                                                                       *";
-    String emptyLine20 = "|                                                                       |";
-    String emptyLine21 = "*                                                                       *";
-    String emptyLine22 = "|                                                                       |";
-    String emptyLine23 = "*                                                                       *";
-    String emptyLine24 = "|                                                                       |";
-    String emptyLine25 = "+-----*-----*-----*-----*-----*-----*-----*-----*-----*-----*-----*-----+";
-    String[] emptyLines = new String[]{emptyLine1, emptyLine2, emptyLine3, emptyLine4, emptyLine5, emptyLine6, emptyLine7, emptyLine8, emptyLine9, emptyLine10,
-            emptyLine11, emptyLine12, emptyLine13, emptyLine14, emptyLine15, emptyLine16, emptyLine17, emptyLine18, emptyLine19, emptyLine20,
-            emptyLine21, emptyLine22, emptyLine23, emptyLine24, emptyLine25};
+    String emptyLineDash = "+-----*-----*-----*-----*-----*-----*-----*-----*-----*-----*-----*-----+";
+    String emptyLinePipe = "|                                                                       |";
+    String emptyLineStar = "*                                                                       *";
+    String[] emptyLines = new String[]{emptyLineDash, emptyLinePipe, emptyLineStar, emptyLinePipe, emptyLineStar, emptyLinePipe, emptyLineStar, emptyLinePipe, emptyLineStar, emptyLinePipe,
+            emptyLineStar, emptyLinePipe, emptyLineStar, emptyLinePipe, emptyLineStar, emptyLinePipe, emptyLineStar, emptyLinePipe, emptyLineStar, emptyLinePipe,
+            emptyLineStar, emptyLinePipe, emptyLineStar, emptyLinePipe, emptyLineDash};
 
-    String templateLine1 = "+-----*-----*-----*-----*-----*-----*-----*-----*-----*-----*-----*-----+";
-    String templateLine2 = "|                                                                       |";
-    String templateLine3 = "*                                                                       *";
-    String templateLine4 = "|        R                 R                 R                 R        |";
-    String templateLine5 = "*           Y                       Y                       Y           *";
-    String templateLine6 = "|                                                                       |";
-    String templateLine7 = "*                 B                                   B                 *";
-    String templateLine8 = "|                                                                       |";
-    String templateLine9 = "*                                                                       *";
-    String templateLine10 = "|        R                 R                 R                 R        |";
-    String templateLine11 = "*                                                                       *";
-    String templateLine12 = "|                                                                       |";
-    String templateLine13 = "*           Y                       O                       Y           *";
-    String templateLine14 = "|                                                                       |";
-    String templateLine15 = "*                                                                       *";
-    String templateLine16 = "|        R                 R                 R                 R        |";
-    String templateLine17 = "*                                                                       *";
-    String templateLine18 = "|                                                                       |";
-    String templateLine19 = "*                 B                                   B                 *";
-    String templateLine20 = "|                                                                       |";
-    String templateLine21 = "*           Y                       Y                       Y           *";
-    String templateLine22 = "|        R                 R                 R                 R        |";
-    String templateLine23 = "*                                                                       *";
-    String templateLine24 = "|                                                                       |";
-    String templateLine25 = "+-----*-----*-----*-----*-----*-----*-----*-----*-----*-----*-----*-----+";
-    String[] templateLines = new String[]{templateLine1, templateLine2, templateLine3, templateLine4, templateLine5, templateLine6, templateLine7, templateLine8, templateLine9, templateLine10,
-            templateLine11, templateLine12, templateLine13, templateLine14, templateLine15, templateLine16, templateLine17, templateLine18, templateLine19, templateLine20,
-            templateLine21, templateLine22, templateLine23, templateLine24, templateLine25};
+     String templateLineR = "|        R                 R                 R                 R        |";
+     String templateLineY = "*           Y                       Y                       Y           *";
+     String templateLineB = "*                 B                                   B                 *";
+    String templateLineYO = "*           Y                       O                       Y           *";
+    String[] templateLines = new String[]{emptyLineDash, emptyLinePipe, emptyLineStar, templateLineR, templateLineY, emptyLinePipe, templateLineB, emptyLinePipe, emptyLineStar, templateLineR,
+            emptyLineStar, emptyLinePipe, templateLineYO, emptyLinePipe, emptyLineStar, templateLineR, emptyLineStar, emptyLinePipe, templateLineB, emptyLinePipe,
+            templateLineY, templateLineR, emptyLineStar, emptyLinePipe, emptyLineDash};
+
+
 
     public void emptySquare(){
         for (int i = 0 ; i < emptyLines.length ; i++) {
@@ -98,6 +57,33 @@ public class SquareMaker {
         }
     }
 
+    public void templateInput(int rows, int columns){
+        // prints the first line of the grid for each column
+        if (columns > 0) {
+            System.out.print(templateLines[0]);
+            for (int l = columns - 1 ; l > 1 ; l--){
+                System.out.print(templateLines[0].substring(1));
+            }
+            System.out.println(templateLines[0].substring(1));
+        } else {
+            System.out.println(templateLines[0]);
+        }
+        // prints each row of grid in full
+        for (int j = rows; j > 0 ; j--) {
+            for (int i = 1; i < templateLines.length; i++) {
+                if (columns > 0) {
+                    System.out.print(templateLines[i]);
+                    for (int k = columns - 2 ; k > 0 ; k--) {
+                        System.out.print(templateLines[i].substring(1));
+                    }
+                    System.out.println(templateLines[i].substring(1));
+                } else {
+                    System.out.println(templateLines[i]);
+                }
+            }
+        }
+    }
+
     // EXAMPLE EMPTY OUTPUT:
     /*
     +-----*-----*-----*-----*-----*-----*-----*-----*-----*-----*-----*-----+
@@ -126,7 +112,7 @@ public class SquareMaker {
     |                                                                       |
     +-----*-----*-----*-----*-----*-----*-----*-----*-----*-----*-----*-----+
      */
-    // EXAMPLE OUTPUT WITH VIABLE SPACES:
+    // EXAMPLE OUTPUT WITH TEMPLATE SPACES:
     /*
     +-----*-----*-----*-----*-----*-----*-----*-----*-----*-----*-----*-----+
     |                                                                       |
