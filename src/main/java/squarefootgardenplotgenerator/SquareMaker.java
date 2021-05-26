@@ -17,43 +17,22 @@ public class SquareMaker {
             emptyLineStar, emptyLinePipe, templateLineYO, emptyLinePipe, emptyLineStar, templateLineR, emptyLineStar, emptyLinePipe, templateLineB, emptyLinePipe,
             templateLineY, templateLineR, emptyLineStar, emptyLinePipe, emptyLineDash};
 
+    String seedR = "R";
+    String seedY = "Y";
+    String seedB = "B";
+    String seedO = "O";
 
+    String seededLineR = "|        " + seedR + "                 " + seedR + "                 " + seedR + "                 " + seedR + "        |";
+    String seededLineY = "*           " + seedY + "                       " + seedY + "                       " + seedY + "           *";
+    String seededLineB = "*                 " + seedB + "                                   " + seedB + "                 *";
+    String seededLineYO = "*           " + seedY + "                       " + seedO + "                       " + seedY + "           *";
+    String[] seededLines = new String[]{emptyLineDash, emptyLinePipe, emptyLineStar, seededLineR, seededLineY, emptyLinePipe, seededLineB, emptyLinePipe, emptyLineStar, seededLineR,
+            emptyLineStar, emptyLinePipe, seededLineYO, emptyLinePipe, emptyLineStar, seededLineR, emptyLineStar, emptyLinePipe, seededLineB, emptyLinePipe,
+            seededLineY, seededLineR, emptyLineStar, emptyLinePipe, emptyLineDash};
 
     public void emptySquare(){
         for (int i = 0 ; i < emptyLines.length ; i++) {
             System.out.println(emptyLines[i]);
-        }
-    }
-
-    public void templateSquare(){
-        for (int i = 0 ; i < templateLines.length ; i++) {
-            System.out.println(templateLines[i]);
-        }
-    }
-
-    public void template1x2(){
-        for (int i = 0 ; i < templateLines.length ; i++) {
-            System.out.print(templateLines[i]);
-            System.out.println(templateLines[i].substring(1));
-        }
-    }
-
-    public void template1x3(){
-        for (int i = 0 ; i < templateLines.length ; i++) {
-            System.out.print(templateLines[i]);
-            System.out.print(templateLines[i].substring(1));
-            System.out.println(templateLines[i].substring(1));
-        }
-    }
-
-    public void template2x2(){
-        for (int i = 0 ; i < templateLines.length ; i++) {
-            System.out.print(templateLines[i]);
-            System.out.println(templateLines[i].substring(1));
-        }
-        for (int i = 1 ; i < templateLines.length ; i++) {
-            System.out.print(templateLines[i]);
-            System.out.println(templateLines[i].substring(1));
         }
     }
 
@@ -79,6 +58,33 @@ public class SquareMaker {
                     System.out.println(templateLines[i].substring(1));
                 } else {
                     System.out.println(templateLines[i]);
+                }
+            }
+        }
+    }
+
+    public void seededInput(int rows, int columns){
+        // prints the first line of the grid for each column
+        if (columns > 1) {
+            System.out.print(seededLines[0]);
+            for (int l = columns - 1 ; l > 1 ; l--){
+                System.out.print(seededLines[0].substring(1));
+            }
+            System.out.println(seededLines[0].substring(1));
+        } else {
+            System.out.println(seededLines[0]);
+        }
+        // prints each row of grid in full
+        for (int j = rows; j > 0 ; j--) {
+            for (int i = 1; i < seededLines.length; i++) {
+                if (columns > 1) {
+                    System.out.print(seededLines[i]);
+                    for (int k = columns - 2 ; k > 0 ; k--) {
+                        System.out.print(seededLines[i].substring(1));
+                    }
+                    System.out.println(seededLines[i].substring(1));
+                } else {
+                    System.out.println(seededLines[i]);
                 }
             }
         }
