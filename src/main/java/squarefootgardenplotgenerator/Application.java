@@ -8,6 +8,6 @@ public class Application {
 //        emptySquareTest.templateSquare();
 //        emptySquareTest.template2x2();
 
-        emptySquareTest.templateInput(5, 3);
+        emptySquareTest.templateInput(5, 1);
     }
 }

@@ -59,7 +59,7 @@ public class SquareMaker {
 
     public void templateInput(int rows, int columns){
         // prints the first line of the grid for each column
-        if (columns > 0) {
+        if (columns > 1) {
             System.out.print(templateLines[0]);
             for (int l = columns - 1 ; l > 1 ; l--){
                 System.out.print(templateLines[0].substring(1));
@@ -71,7 +71,7 @@ public class SquareMaker {
         // prints each row of grid in full
         for (int j = rows; j > 0 ; j--) {
             for (int i = 1; i < templateLines.length; i++) {
-                if (columns > 0) {
+                if (columns > 1) {
                     System.out.print(templateLines[i]);
                     for (int k = columns - 2 ; k > 0 ; k--) {
                         System.out.print(templateLines[i].substring(1));
