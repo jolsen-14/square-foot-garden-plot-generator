@@ -10,7 +10,7 @@ public class GardenerInput {
     // ## INSTANCE VARIABLES ##
     private Scanner userInput = new Scanner(System.in);
     private PlantLists listOfPlants = new PlantLists();
-    private Map<String, Integer> allPlants = new HashMap<>();
+    private Map<String, Integer> allPlants = listOfPlants.getAllPlants();
     private int columns;
     private int rows;
 
@@ -27,19 +27,6 @@ public class GardenerInput {
     // ## METHODS ##
 
     public Map<String, Integer> askTheGardener() {
-
-            for (int i = 0 ; i < listOfPlants.getrPlants().length ; i++) {
-            allPlants.put(listOfPlants.getrPlants()[i], 0);
-        }
-            for (int i = 0 ; i < listOfPlants.getyPlants().length ; i++) {
-            allPlants.put(listOfPlants.getyPlants()[i], 0);
-        }
-            for (int i = 0 ; i < listOfPlants.getbPlants().length ; i++) {
-            allPlants.put(listOfPlants.getbPlants()[i], 0);
-        }
-            for (int i = 0 ; i < listOfPlants.getoPlants().length ; i++) {
-            allPlants.put(listOfPlants.getoPlants()[i], 0);
-        }
 
         // USER INTERACTION BELOW THIS LINE
 

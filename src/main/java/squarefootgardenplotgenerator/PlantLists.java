@@ -1,5 +1,8 @@
 package squarefootgardenplotgenerator;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class PlantLists {
 
     private String[] rPlants = new String[]{"Beets (Small)", "Carrots", "Green Onion", "Leek", "Micro Greens",
@@ -10,6 +13,7 @@ public class PlantLists {
             "Shallots", "Sunflowers (Hedge)", "Swiss Chard"};
     private String[] oPlants = new String[]{"Broccoli", "Brussel Sprouts", "Cabbage", "Cauliflower", "Eggplant",
             "Kale", "Peppers", "Potato", "Strawberry", "Sunflower (Large)", "Tomatoes (Vine)"};
+    private Map<String, Integer> allPlants = new HashMap<>();
 
     public String[] getrPlants() {
         return rPlants;
@@ -25,6 +29,26 @@ public class PlantLists {
 
     public String[] getoPlants() {
         return oPlants;
+    }
+
+    public Map<String, Integer> getAllPlants() {
+        if (allPlants.isEmpty()) {
+            for (int i = 0; i < rPlants.length; i++) {
+                allPlants.put(rPlants[i], 0);
+            }
+            for (int i = 0; i < yPlants.length; i++) {
+                allPlants.put(yPlants[i], 0);
+            }
+            for (int i = 0; i < bPlants.length; i++) {
+                allPlants.put(bPlants[i], 0);
+            }
+            for (int i = 0; i < oPlants.length; i++) {
+                allPlants.put(oPlants[i], 0);
+            }
+            return allPlants;
+        } else {
+            return allPlants;
+        }
     }
 
 }
