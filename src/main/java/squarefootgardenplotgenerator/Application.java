@@ -15,8 +15,5 @@ public class Application {
             System.out.println(line);
         }
 
-//        SquareMaker makeMeAGarden = new SquareMaker();
-//        makeMeAGarden.seededInput(userInteraction.getRows(), userInteraction.getColumns());
-
     }
 }

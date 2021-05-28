@@ -4,13 +4,13 @@ import java.util.*;
 
 public class GridMaker {
 
-    private String emptyLineDash = "-----*-----*-----*-----*-----*-----*-----*-----*-----*-----*-----*-----+";
-    private String emptyLinePipe = "                                                                       |";
-    private String emptyLineStar = "                                                                       *";
-    private String templateLineR = "        R                 R                 R                 R        |";
-    private String templateLineY = "           Y                       Y                       Y           *";
-    private String templateLineB = "                 B                                   B                 *";
-    private String templateLineO = "                                   O                                   *";
+    private final String emptyLineDash = "-----*-----*-----*-----*-----*-----*-----*-----*-----*-----*-----*-----+";
+    private final String emptyLinePipe = "                                                                       |";
+    private final String emptyLineStar = "                                                                       *";
+    private final String templateLineR = "        R                 R                 R                 R        |";
+    private final String templateLineY = "           Y                       Y                       Y           *";
+    private final String templateLineB = "                 B                                   B                 *";
+    private final String templateLineO = "                                   O                                   *";
     private PlantLists listOfPlants = new PlantLists();
 
     public List<String> makeGrid(Map<String, Integer> plants, int rows, int columns){
@@ -56,8 +56,7 @@ public class GridMaker {
                     secondHalf = emptyLineDash.substring(((emptyLineDash.length() / 2)) + (tempPlants.peek().length() / 2) + 1);
                 }
                 String line = firstHalf + tempPlants.peek() + secondHalf;
-                lineInFull1 += line;
-//                lineInFull1 += emptyLineDash;  // grid start
+                lineInFull1 += line; // grid start
                 lineInFull2 += emptyLinePipe;  // pipe
                 lineInFull3 += emptyLineStar;  // star
                 if (Arrays.asList(listOfPlants.getrPlants()).contains(tempPlants.peek())) {
@@ -153,19 +152,4 @@ public class GridMaker {
         gridInFull.add(lastLineInFull);
         return gridInFull;
     }
-
-
-
-//            for (String plant : tempPlants.keySet()) {
-//            if (plants.get(plant) > 0) {
-//                for (int i = 0 ; i <= rows ; i++) {
-//                    String firstHalf = emptyLineDash.substring(1, ((emptyLineDash.length() / 2)) - plant.length() / 2);
-//                    String secondHalf = emptyLineDash.substring(((emptyLineDash.length() / 2)) + plant.length() / 2, emptyLineDash.length());
-//                    String line = firstHalf + plant + secondHalf;
-//                    firstLineInFull += line;
-//                    tempPlants.put(plant, tempPlants.get(plant) - 1);
-//                }
-//                gridInFull.add(firstLineInFull);
-//            }
-//        }
 }

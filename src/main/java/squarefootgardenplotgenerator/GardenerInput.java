@@ -53,13 +53,13 @@ public class GardenerInput {
 
         Integer numTotalPlants = 0;
             for (String plant : allPlants.keySet()) {
-            System.out.println("How many grids worth of " + plant + " would you like?");
+            System.out.println("How many squares worth of " + plant + " would you like?");
             System.out.println("(Maximum = " + (totalSquares - numTotalPlants) + ") ");
             Integer numPlants = userInput.nextInt();
             numTotalPlants += numPlants;
             if ((int) numTotalPlants > totalSquares) {
                 numTotalPlants -= numPlants;
-                System.out.println("That was too many plants, using the maximum instead...");
+                System.out.println("That was too many squares, using the maximum instead...");
                 numPlants = totalSquares - numTotalPlants;
                 numTotalPlants += numPlants;
             }
@@ -87,7 +87,11 @@ public class GardenerInput {
                     plantSubTotal = allPlants.get(plant);
                     plantFullTotal += plantSubTotal;
                 }
-                System.out.println(allPlants.get(plant) + " squares of " + plant + " - " + plantSubTotal + " Total");
+                if (allPlants.get(plant) == 1) {
+                    System.out.println(allPlants.get(plant) + " square of " + plant + " - " + plantSubTotal + " Total");
+                } else {
+                    System.out.println(allPlants.get(plant) + " squares of " + plant + " - " + plantSubTotal + " Total");
+                }
             }
         }
             System.out.println("Totalling " + plantFullTotal + " plants!");
