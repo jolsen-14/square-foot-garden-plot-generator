@@ -5,6 +5,16 @@ import java.util.Map;
 
 public class PlantLists {
 
+    // ## INSTANCE VARIABLES ##
+
+    /*
+    Predefined lists of plants requiring different spacings for their seeds. The names come from the color of the
+    holes in the official "Seeding Square" sold online.
+    r = Red >> Smallest spacing, 16 plants per square
+    y = Yellow >> Medium-small spacing, 9 plants per square
+    b = Blue >> Medium spacing, 4 plants per square
+    o = Orange >> Large spacing, 1 plant per square
+     */
     private String[] rPlants = new String[]{"Beets (Small)", "Carrots", "Green Onion", "Leek", "Micro Greens",
             "Parsnip", "Radish", "Salad Greens", "Scallions", "Turnips (Small)"};
     private String[] yPlants = new String[]{"Beans (Pole)", "Beans (Bush)", "Beets (Large)", "Bok Choy",
@@ -13,7 +23,10 @@ public class PlantLists {
             "Shallots", "Sunflowers (Hedge)", "Swiss Chard"};
     private String[] oPlants = new String[]{"Broccoli", "Brussel Sprouts", "Cabbage", "Cauliflower", "Eggplant",
             "Kale", "Peppers", "Potato", "Strawberry", "Sunflower (Large)", "Tomatoes (Vine)"};
-    private Map<String, Integer> allPlants = new HashMap<>();
+    // A map to old all the plants together
+    private Map<String, Integer> allPlantsList = new HashMap<>();
+
+    // ## GETTERS ##
 
     public String[] getrPlants() {
         return rPlants;
@@ -31,23 +44,26 @@ public class PlantLists {
         return oPlants;
     }
 
-    public Map<String, Integer> getAllPlants() {
-        if (allPlants.isEmpty()) {
+    // ## METHODS ##
+
+    // Adds all plants in the smaller lists with a 0 key value (quantity) for each until the gardener defines them.
+    public Map<String, Integer> getAllPlantsList() {
+        if (allPlantsList.isEmpty()) {
             for (int i = 0; i < rPlants.length; i++) {
-                allPlants.put(rPlants[i], 0);
+                allPlantsList.put(rPlants[i], 0);
             }
             for (int i = 0; i < yPlants.length; i++) {
-                allPlants.put(yPlants[i], 0);
+                allPlantsList.put(yPlants[i], 0);
             }
             for (int i = 0; i < bPlants.length; i++) {
-                allPlants.put(bPlants[i], 0);
+                allPlantsList.put(bPlants[i], 0);
             }
             for (int i = 0; i < oPlants.length; i++) {
-                allPlants.put(oPlants[i], 0);
+                allPlantsList.put(oPlants[i], 0);
             }
-            return allPlants;
+            return allPlantsList;
         } else {
-            return allPlants;
+            return allPlantsList;
         }
     }
 
