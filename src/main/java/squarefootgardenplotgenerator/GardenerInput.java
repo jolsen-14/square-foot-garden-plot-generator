@@ -1,5 +1,7 @@
 package squarefootgardenplotgenerator;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -9,13 +11,13 @@ public class GardenerInput {
 
     // ## INSTANCE VARIABLES ##
 
-    private Scanner userInput = new Scanner(System.in);
-    private PlantLists listOfPlants = new PlantLists();
-    private Map<String, Integer> allPlants = listOfPlants.getAllPlantsList(); // predefined from PlantLists.
+    private final Scanner userInput = new Scanner(System.in);
+    private final PlantLists listOfPlants = new PlantLists();
+    private final Map<String, Integer> allPlants = listOfPlants.getAllPlantsList(); // predefined from PlantLists.
     private int columns;
     private int rows;
     private double woodLengthRequired;
-    private double compostGallonsRequired;
+    private BigDecimal compostGallonsRequired;
 
     // ## GETTERS ##
 
@@ -31,7 +33,7 @@ public class GardenerInput {
         return woodLengthRequired;
     }
 
-    public double getCompostGallonsRequired() {
+    public BigDecimal getCompostGallonsRequired() {
         return compostGallonsRequired;
     }
 
@@ -41,33 +43,58 @@ public class GardenerInput {
 
         // USER INTERACTION BELOW THIS LINE
 
-            System.out.print("Please provide the width of your garden area (in feet): ");
-        columns = userInput.nextInt();
+        // Get the number of columns in the garden.
+        System.out.println("Please provide the width of your garden area (in feet):");
+        do {
+            System.out.println("   (The number can't be zero or negative)");
+            while (!userInput.hasNextInt()) {
+                System.out.println("That's not a number!");
+                userInput.next();
+            }
+            columns = userInput.nextInt();
+        } while (columns < 1);
+        System.out.println("Thank you! There will be " + columns + " columns in your plot.\n");
 
-            System.out.print("Please provide the height of your garden area (in feet): ");
-        rows = userInput.nextInt();
+        // Get the number of rows in the garden.
+        System.out.println("Please provide the height of your garden area (in feet):");
+        do {
+            System.out.println("   (The number can't be zero or negative)");
+            while (!userInput.hasNextInt()) {
+                System.out.println("That's not a number!");
+                userInput.next();
+            }
+            rows = userInput.nextInt();
+        } while (rows < 1);
+        System.out.println("Thank you! There will be " + rows + " rows in your plot.\n");
 
         int totalSquares = columns * rows;
 
         // Iterates through the possible plants and asks how many the gardener wants to plant
         // and adds them to the key for that plant in the map.
-        Integer numTotalPlants = 0;
-            for (String plant : allPlants.keySet()) {
-                System.out.println("How many squares worth of " + plant + " would you like?");
-                System.out.println("(Maximum = " + (totalSquares - numTotalPlants) + ") ");
-                Integer numPlants = userInput.nextInt();
-                numTotalPlants += numPlants;
-                // If the gardener tried to add more plants than there are squares left, it just adds the maximum.
-                if ((int) numTotalPlants > totalSquares) {
-                    numTotalPlants -= numPlants;
-                    System.out.println("That was too many squares, using the maximum instead...");
-                    numPlants = totalSquares - numTotalPlants;
-                    numTotalPlants += numPlants;
+        int numTotalPlants = 0;
+        for (String plant : allPlants.keySet()) {
+            int numPlants;
+            System.out.println("How many squares worth of " + plant + " would you like?\n   (Maximum = " + (totalSquares - numTotalPlants) + ") ");
+            do {
+                System.out.println("   (The number can't be zero or negative)");
+                while (!userInput.hasNextInt()) {
+                    System.out.println("That's not a number!");
+                    userInput.next();
                 }
-                allPlants.put(plant, numPlants);
-                // If we've reached the maximum squares filled, the loop ends and no more questions are asked.
-                if (numTotalPlants == totalSquares) {
-                    break;
+                numPlants = userInput.nextInt();
+            } while (numPlants <= 0);
+            numTotalPlants += numPlants;
+            // If the gardener tried to add more plants than there are squares left, it just adds the maximum.
+            if ((int) numTotalPlants > totalSquares) {
+                numTotalPlants -= numPlants;
+                System.out.println("That was too many squares, using the maximum instead...\n");
+                numPlants = totalSquares - numTotalPlants;
+                numTotalPlants += numPlants;
+            }
+            allPlants.put(plant, numPlants);
+            // If we've reached the maximum squares filled, the loop ends and no more questions are asked.
+            if (numTotalPlants == totalSquares) {
+               break;
             }
         }
         // Time to print out a list of the plants the gardener picked...
@@ -105,15 +132,15 @@ public class GardenerInput {
         // Calculate and print wood required:
         woodLengthRequired = ((double) this.rows * 2) + ((double) this.columns * 2);
         if (woodLengthRequired % 4 == 0) {
-            System.out.println("You will need " + woodLengthRequired + "feet of wood, or " + woodLengthRequired / 4 + " planks of 1in x 6in x 4ft wood.");
+            System.out.println("You will need " + woodLengthRequired + "ft of wood, or " + woodLengthRequired / 4 + " planks of 1in x 6in x 4ft wood.");
         } else {
-            System.out.println("You will need " + woodLengthRequired + "feet of wood, or " + (Math.ceil(woodLengthRequired / 4)) + " planks of 1in x 6in x 4ft wood (Cutting required).");
+            System.out.println("You will need " + woodLengthRequired + "ft of wood, or " + (Math.ceil(woodLengthRequired / 4)) + " planks of 1in x 6in x 4ft wood (Cutting required).");
         }
         System.out.println();
 
         // Calculate and print compost required:
-        compostGallonsRequired = ((double) this.rows * (double) this.columns * .5) * 7.48052;
-        System.out.println("You will also need " + compostGallonsRequired + "Gal of compost, or " + compostGallonsRequired / 5 + " 5 gallon buckets worth.");
+        compostGallonsRequired = (BigDecimal.valueOf(this.rows).multiply(BigDecimal.valueOf(this.columns)).multiply(BigDecimal.valueOf(7.48052))).setScale(2, RoundingMode.CEILING);
+        System.out.println("You will also need " + compostGallonsRequired + "gal of compost, or " + compostGallonsRequired.divide(BigDecimal.valueOf(5)).setScale(2, RoundingMode.CEILING) + " 5 gallon buckets worth.");
         System.out.println();
         // Finally, return the map to be used in GridMaker.
         return allPlants;
