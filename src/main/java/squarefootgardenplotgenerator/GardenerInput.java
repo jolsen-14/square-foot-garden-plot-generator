@@ -2,10 +2,7 @@ package squarefootgardenplotgenerator;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class GardenerInput {
 
@@ -29,17 +26,9 @@ public class GardenerInput {
         return rows;
     }
 
-    public double getWoodLengthRequired() {
-        return woodLengthRequired;
-    }
-
-    public BigDecimal getCompostGallonsRequired() {
-        return compostGallonsRequired;
-    }
-
     // ## METHODS ##
 
-    public Map<String, Integer> askTheGardener() {
+    public void askTheGardener() {
 
         // USER INTERACTION BELOW THIS LINE
 
@@ -85,7 +74,7 @@ public class GardenerInput {
             } while (numPlants <= 0);
             numTotalPlants += numPlants;
             // If the gardener tried to add more plants than there are squares left, it just adds the maximum.
-            if ((int) numTotalPlants > totalSquares) {
+            if (numTotalPlants > totalSquares) {
                 numTotalPlants -= numPlants;
                 System.out.println("That was too many squares, using the maximum instead...\n");
                 numPlants = totalSquares - numTotalPlants;
@@ -140,9 +129,15 @@ public class GardenerInput {
 
         // Calculate and print compost required:
         compostGallonsRequired = (BigDecimal.valueOf(this.rows).multiply(BigDecimal.valueOf(this.columns)).multiply(BigDecimal.valueOf(7.48052))).setScale(2, RoundingMode.CEILING);
-        System.out.println("You will also need " + compostGallonsRequired + "gal of compost, or " + compostGallonsRequired.divide(BigDecimal.valueOf(5)).setScale(2, RoundingMode.CEILING) + " 5 gallon buckets worth.");
+        System.out.println("You will also need " + compostGallonsRequired + "gal of compost, or " + compostGallonsRequired.divide(BigDecimal.valueOf(5), RoundingMode.CEILING).setScale(2, RoundingMode.CEILING) + " 5 gallon buckets worth.");
         System.out.println();
-        // Finally, return the map to be used in GridMaker.
-        return allPlants;
+
+        // Finally, use the map in a new GridMaker instance.
+        GridMaker gridBuilder = new GridMaker(allPlants, rows, columns);
+        List<String> myGrid = gridBuilder.makeGrid();
+        System.out.println("Here's your garden grid!");
+        for (String line : myGrid) {
+            System.out.println(line);
+        }
     }
 }

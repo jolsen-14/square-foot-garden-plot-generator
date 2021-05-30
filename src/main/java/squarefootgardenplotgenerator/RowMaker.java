@@ -7,48 +7,44 @@ public class RowMaker {
 
     // ## INSTANCE VARIABLES ##
 
-    private final String emptyLineDash = "-----*-----*-----*-----*-----*-----*-----*-----*-----*-----*-----*-----+";
-    private final String emptyLinePipe = "                                                                       |";
-    private final String emptyLineStar = "                                                                       *";
-    private final String templateLineR = "        R                 R                 R                 R        |";
-    private final String templateLineY = "           Y                       Y                       Y           *";
-    private final String templateLineB = "                 B                                   B                 *";
-    private final String templateLineO = "                                   O                                   *";
-    private PlantLists listOfPlants = new PlantLists();
-    // This part adds the left-most character in each line to a new array so that it is not repeated with each column.
-    // This is run once for every time RowMaker is instanced, hence the for loop running up to the rows instancing in GridMaker.
-    private String[] row = new String[]{
-            "+",
-            "|",
-            "*",
-            "|",
-            "*",
-            "|",
-            "*",
-            "|",
-            "*",
-            "|",
-            "*",
-            "|",
-            "*",
-            "|",
-            "*",
-            "|",
-            "*",
-            "|",
-            "*",
-            "|",
-            "*",
-            "|",
-            "*",
-            "|",
-    };
+    private final PlantLists listOfPlants = new PlantLists();
+    private final String[] row;
+
+    // ## CONSTRUCTORS ##
+
+    public RowMaker() {
+        // This constructor adds the left-most character in each line to a new array so that it is not repeated with each column.
+        this.row = new String[]{
+                "+",
+                "|",
+                "*",
+                "|",
+                "*",
+                "|",
+                "*",
+                "|",
+                "*",
+                "|",
+                "*",
+                "|",
+                "*",
+                "|",
+                "*",
+                "|",
+                "*",
+                "|",
+                "*",
+                "|",
+                "*",
+                "|",
+                "*",
+                "|",
+        };
+    }
 
     // ## GETTERS ##
 
-    public String[] getRow() {
-        return row;
-    }
+    // none
 
     // ## METHODS ##
 
@@ -65,6 +61,13 @@ public class RowMaker {
                 possible seed spacings.
          */
         for (int i = 0 ; i < columns ; i++) {
+            final String emptyLineDash = "-----*-----*-----*-----*-----*-----*-----*-----*-----*-----*-----*-----+";
+            final String emptyLinePipe = "                                                                       |";
+            final String emptyLineStar = "                                                                       *";
+            final String templateLineR = "        R                 R                 R                 R        |";
+            final String templateLineY = "           Y                       Y                       Y           *";
+            final String templateLineB = "                 B                                   B                 *";
+            final String templateLineO = "                                   O                                   *";
             String firstHalf = emptyLineDash.substring(0, ((emptyLineDash.length() / 2)) - plantsInGarden.peek().length() / 2);
             String secondHalf = "";
             if (plantsInGarden.peek().length() % 2 == 0) {

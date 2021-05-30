@@ -6,11 +6,17 @@ public class GridMaker {
 
     // ## INSTANCE VARIABLES ##
 
-    // none
+    private final int rows;
+    private final int columns;
+    private Map<String, Integer> plants = new HashMap<>();
 
     // ## CONSTRUCTORS ##
 
-    // None
+    public GridMaker(Map<String, Integer> plants, int rows, int columns) {
+        this.plants = plants;
+        this.rows = rows;
+        this.columns = columns;
+    }
 
     // ## GETTERS AND SETTERS ##
 
@@ -18,7 +24,7 @@ public class GridMaker {
 
     // ## METHODS ##
 
-    public List<String> makeGrid(Map<String, Integer> plants, int rows, int columns){
+    public List<String> makeGrid(){
         /*
         A new Queue is made and all items (squares) from the plants map created in GardenerInput are put into it,
         one for every quantity of square that plant type based on the key in the map.
