@@ -86,6 +86,10 @@ public class GardenerInput {
                break;
             }
         }
+        // If the user added no squares of plants, or not enough, add the rest as Empty Squares.
+        if (numTotalPlants != totalSquares) {
+            allPlants.put("Empty Square", totalSquares - numTotalPlants);
+        }
         // Time to print out a list of the plants the gardener picked...
         System.out.println("Your garden will consist of the following plants:");
           int plantFullTotal = 0;

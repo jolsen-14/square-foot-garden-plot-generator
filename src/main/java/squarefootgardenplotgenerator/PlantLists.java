@@ -60,6 +60,7 @@ public class PlantLists {
         for (String oPlant : oPlants) {
             allPlantsList.put(oPlant, 0);
         }
+        allPlantsList.put("Empty Square", 0);
         return allPlantsList;
     }
 }

@@ -36,16 +36,24 @@ public class GridMaker {
         int plantQuantity = 0;
         do {
             for (String plant : plants.keySet()) {
-                if (plants.get(plant) > 0) {
+                if (plants.get(plant) > 0 && !plant.equals("Empty Square")) {
                     tempPlants.add(plant);
                     plants.put(plant, plants.get(plant) - 1);
                 }
             }
             plantQuantity = 0;
             for (String plant : plants.keySet()) {
-                plantQuantity += plants.get(plant);
+                if (!plant.equals("Empty Square")) {
+                    plantQuantity += plants.get(plant);
+                }
             }
         } while (plantQuantity > 0);
+        // If there are any Empty Squares, add them all to the end of the grid.
+        if (plants.get("Empty Square") != 0) {
+            for (int i = 0 ; i < plants.get("Empty Square") ; i++) {
+                tempPlants.add("Empty Square");
+            }
+        }
         /*
         A new list of strings is then made and iteratively the lines of the grid are added to it, one row at a time.
          */
