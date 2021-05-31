@@ -65,13 +65,13 @@ public class GardenerInput {
             int numPlants;
             System.out.println("How many squares worth of " + plant + " would you like?\n   (Maximum = " + (totalSquares - numTotalPlants) + ") ");
             do {
-                System.out.println("   (The number can't be zero or negative)");
+                System.out.println("   (The number can't be negative)");
                 while (!userInput.hasNextInt()) {
                     System.out.println("That's not a number!");
                     userInput.next();
                 }
                 numPlants = userInput.nextInt();
-            } while (numPlants <= 0);
+            } while (numPlants < 0);
             numTotalPlants += numPlants;
             // If the gardener tried to add more plants than there are squares left, it just adds the maximum.
             if (numTotalPlants > totalSquares) {
