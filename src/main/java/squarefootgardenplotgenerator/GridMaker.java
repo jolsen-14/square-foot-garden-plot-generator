@@ -27,8 +27,10 @@ public class GridMaker {
     public List<String> makeGrid(){
         /*
         A new Queue is made and all items (squares) from the plants map created in GardenerInput are put into it,
-        one for every quantity of square that plant type based on the key in the map, however they are not added in
-        sequence but staggered using the do/while so that like plants are, ideally, not placed next to each other.
+        one for every quantity of square of that plant type based on the value in the map, however they are not added in
+        sequence but staggered using the do/while so that like plants are, ideally, not placed next to each other. This
+        isn't perfect yet as it only places plants in a pattern and if there are many squares of one plant, they may
+        all be put together at the end/bottom-right of the grid.
          */
         Queue<String> tempPlants = new LinkedList<>();
         int plantQuantity = 0;
