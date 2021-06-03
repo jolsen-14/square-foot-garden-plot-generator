@@ -69,7 +69,7 @@ public class RowMaker {
             final String templateLineB = "                 B                                   B                 *";
             final String templateLineO = "                                   O                                   *";
             String firstHalf = emptyLineDash.substring(0, ((emptyLineDash.length() / 2)) - plantsInGarden.peek().length() / 2);
-            String secondHalf = "";
+            String secondHalf;
             if (plantsInGarden.peek().length() % 2 == 0) {
                 secondHalf = emptyLineDash.substring(((emptyLineDash.length() / 2)) + (plantsInGarden.peek().length() / 2));
             } else {

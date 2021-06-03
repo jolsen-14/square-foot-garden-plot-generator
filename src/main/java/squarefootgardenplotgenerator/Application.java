@@ -12,7 +12,7 @@ public class Application {
         userInteraction.askTheGardener();
 
     }
-
+}
 
     /*
     ##### KNOWN BUGS #####
@@ -23,4 +23,4 @@ public class Application {
                      Can add this as a "default" type in the map. Also maybe remove it from
                      consideration in the sorting of the queue.
      */
-}
+
