@@ -14,6 +14,18 @@ public class Application {
     }
 }
 
+//        Menu menu = new Menu();
+//        PlantLists listOfPlants = new PlantLists();
+//
+//        menu.plantMenu(listOfPlants.getrPlants());
+//        System.out.println();
+//        menu.plantMenu(listOfPlants.getyPlants());
+//        System.out.println();
+//        menu.plantMenu(listOfPlants.getbPlants());
+//        System.out.println();
+//        menu.plantMenu(listOfPlants.getoPlants());
+//        System.out.println();
+
     /*
     ##### KNOWN BUGS #####
     SOLVED! *If the gardener goes through the entire list of plants to add and adds no plants at all, or adds less than the total
