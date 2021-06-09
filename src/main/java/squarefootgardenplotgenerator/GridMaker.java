@@ -59,17 +59,19 @@ public class GridMaker {
 
         // Create a new instance of PlantSorter so we can sort these plants.
         PlantSorter plantSorter = new PlantSorter();
-        // Sort them 10 times to try to ensure no alike plants are adjacent to each other (Might still happen).
-        unsortedPlants = plantSorter.sortThesePlants(unsortedPlants, columns);
-        unsortedPlants = plantSorter.sortThesePlants(unsortedPlants, columns);
-        unsortedPlants = plantSorter.sortThesePlants(unsortedPlants, columns);
-        unsortedPlants = plantSorter.sortThesePlants(unsortedPlants, columns);
-        unsortedPlants = plantSorter.sortThesePlants(unsortedPlants, columns);
-        unsortedPlants = plantSorter.sortThesePlants(unsortedPlants, columns);
-        unsortedPlants = plantSorter.sortThesePlants(unsortedPlants, columns);
-        unsortedPlants = plantSorter.sortThesePlants(unsortedPlants, columns);
-        unsortedPlants = plantSorter.sortThesePlants(unsortedPlants, columns);
-        unsortedPlants = plantSorter.sortThesePlants(unsortedPlants, columns);
+        // Sort them 100 times to try to ensure no alike plants are adjacent to each other (Might still happen).
+        int sortMatches = 0; // sortMatches tracks how many times a match has occurred between the pre-sorted and sorted plot.
+        for (int i = 0 ; i <= 100 ; i++) {
+            List<String> preUnsortedPlants = new ArrayList<>(unsortedPlants);
+            unsortedPlants = plantSorter.sortThesePlants(unsortedPlants, columns);
+            if (preUnsortedPlants.equals(unsortedPlants)) {
+                sortMatches++;
+            }
+            if (sortMatches > 10) { // If there's been 10 matches, then just end the sorting here.
+                System.out.println("The plot has been sorted " + i + " times in an attempt to ensure alike plants are not in adjacent squares.");
+                break;
+            }
+        }
 
         // Now a new queue is made from the now-sorted plants so that we can use it in RowMaker.
         Queue<String> sortedPlants = new LinkedList<>(unsortedPlants);
